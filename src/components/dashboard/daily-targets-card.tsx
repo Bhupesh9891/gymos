@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 
 import { GymCard } from "@/components/ui/gym-card";
+import { ProgressBar } from "@/components/ui/progress-bar";
 import { GymColors, Spacing, Typography } from "@/constants/theme";
 
 type DailyTargetsCardProps = {
-  water: string;
+  water: number;
   sleep: string;
   steps: string;
 };
@@ -18,7 +19,7 @@ export function DailyTargetsCard({
     <GymCard style={styles.card}>
       <Text style={styles.eyebrow}>DAILY TARGETS</Text>
 
-      <TargetRow label="Water" value={water} />
+      <ProgressBar current={water} target={3.5} unit="L" />
       <TargetRow label="Sleep" value={sleep} />
       <TargetRow label="Steps" value={steps} />
     </GymCard>

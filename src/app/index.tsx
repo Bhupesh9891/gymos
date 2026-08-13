@@ -18,14 +18,13 @@ export default function HomeScreen() {
 
       <NorthStarCard goal="Gain muscle" current="64.8 kg" target="75 kg" />
 
-      <DailyTargetsCard water={`${water.toFixed(1)} / 3.5 L`} sleep="7h 12m" steps="6,430" />
+      <DailyTargetsCard water={water} sleep="7h 12m" steps="6,430" />
 
       <SuggestionCard message="Today's workout is Push." />
       <GymFAB
         onWaterAdd={(amount) => {
-        setWater((current) => current + amount);
-        }
-      }
+          setWater((current) => current + amount);
+        }}
       />
     </View>
   );
