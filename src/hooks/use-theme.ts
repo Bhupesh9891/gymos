@@ -5,10 +5,11 @@
 
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { ColorSchemeName } from 'react-native';
 
 export function useTheme() {
-  const scheme = useColorScheme();
-  const theme = scheme === 'unspecified' ? 'light' : scheme;
-
-  return Colors[theme];
+  const scheme: NonNullable<ColorSchemeName> = useColorScheme() ?? 'light';
+  // Type-safe: useColorScheme now returns properly narrowed type
+  
+  return Colors[scheme];
 }

@@ -33,6 +33,7 @@ export function NorthStarCard({ northStar }: NorthStarCardProps) {
   const [open, setOpen] = useState(false);
   const [editing, setEditing] = useState(false);
 
+  // Local state for editing - initialized from props
   const [title, setTitle] = useState(northStar.title);
   const [metricName, setMetricName] = useState(northStar.metric?.name ?? "");
   const [current, setCurrent] = useState(
@@ -44,12 +45,35 @@ export function NorthStarCard({ northStar }: NorthStarCardProps) {
   const [unit, setUnit] = useState(northStar.metric?.unit ?? "");
   const [why, setWhy] = useState(northStar.why ?? "");
 
+  // Persisted state (in a real app, this would sync with backend/storage)
+  const [persistedNorthStar, setPersistedNorthStar] = useState<NorthStar>(northStar);
+
   function openEditor() {
+    // Reset form to current persisted values
+    setTitle(persistedNorthStar.title);
+    setMetricName(persistedNorthStar.metric?.name ?? "");
+    setCurrent(persistedNorthStar.metric?.current?.toString() ?? "");
+    setTarget(persistedNorthStar.metric?.target?.toString() ?? "");
+    setUnit(persistedNorthStar.metric?.unit ?? "");
+    setWhy(persistedNorthStar.why ?? "");
     setEditing(true);
     setOpen(false);
   }
 
   function save() {
+    // Persist the changes
+    setPersistedNorthStar({
+      title,
+      metric: metricName || current || target
+        ? {
+            name: metricName || undefined,
+            current: current ? parseFloat(current) : undefined,
+            target: target ? parseFloat(target) : undefined,
+            unit: unit || undefined,
+          }
+        : undefined,
+      why: why || undefined,
+    });
     setEditing(false);
     setOpen(true);
   }
@@ -61,12 +85,12 @@ export function NorthStarCard({ northStar }: NorthStarCardProps) {
         <GymCard style={styles.card}>
           <Text style={styles.eyebrow}>NORTH STAR</Text>
 
-          <Text style={styles.title}>{title}</Text>
+          <Text style={styles.title}>{persistedNorthStar.title}</Text>
 
-          {current && target && (
+          {persistedNorthStar.metric?.current && persistedNorthStar.metric?.target && (
             <Text style={styles.progress}>
-              {current} → {target}
-              {unit ? ` ${unit}` : ""}
+              {persistedNorthStar.metric.current} → {persistedNorthStar.metric.target}
+              {persistedNorthStar.metric.unit ? ` ${persistedNorthStar.metric.unit}` : ""}
             </Text>
           )}
         </GymCard>
@@ -94,26 +118,26 @@ export function NorthStarCard({ northStar }: NorthStarCardProps) {
               </Pressable>
             </View>
 
-            <Text style={styles.goal}>{title}</Text>
+            <Text style={styles.goal}>{persistedNorthStar.title}</Text>
 
-            {current && target && (
+            {persistedNorthStar.metric?.current && persistedNorthStar.metric?.target && (
               <>
                 <DetailRow
-                  label={`Current ${metricName}`}
-                  value={`${current}${unit ? ` ${unit}` : ""}`}
+                  label={`Current ${persistedNorthStar.metric?.name || "Metric"}`}
+                  value={`${persistedNorthStar.metric.current}${persistedNorthStar.metric.unit ? ` ${persistedNorthStar.metric.unit}` : ""}`}
                 />
 
                 <DetailRow
-                  label={`Target ${metricName}`}
-                  value={`${target}${unit ? ` ${unit}` : ""}`}
+                  label={`Target ${persistedNorthStar.metric?.name || "Metric"}`}
+                  value={`${persistedNorthStar.metric.target}${persistedNorthStar.metric.unit ? ` ${persistedNorthStar.metric.unit}` : ""}`}
                 />
               </>
             )}
 
-            {why && (
+            {persistedNorthStar.why && (
               <View style={styles.whySection}>
                 <Text style={styles.detailLabel}>Why</Text>
-                <Text style={styles.why}>{why}</Text>
+                <Text style={styles.why}>{persistedNorthStar.why}</Text>
               </View>
             )}
 

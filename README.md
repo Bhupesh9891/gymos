@@ -1,56 +1,122 @@
-# Welcome to your Expo app 👋
+# GymOS - Professional Fitness Tracking App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern, beautifully designed fitness tracking application built with Expo and React Native. Features a premium dark theme with vibrant accents, smooth animations, and an intuitive user interface.
 
-## Get started
+## ✨ Features
 
-1. Install dependencies
+### Dashboard
+- **Personalized Greeting** - Dynamic greeting with user identification
+- **Workout Card** - Today's workout display with quick start action
+- **North Star Goal** - Long-term goal tracking with editable metrics
+- **Daily Targets** - Water, sleep, and step tracking with progress visualization
+- **Smart Suggestions** - Context-aware fitness recommendations
 
-   ```bash
-   npm install
-   ```
+### Quick Actions FAB
+- Color-coded action buttons for different tracking categories
+- Haptic feedback for tactile response
+- Water quick-add with multiple volume options
+- Smooth modal animations
 
-2. Start the app
+### Design System
+- Professional dark mode palette
+- Vibrant semantic colors for different action types
+- Consistent spacing and typography scale
+- Subtle shadows and borders for depth
+- Icon-based visual hierarchy
 
-   ```bash
-   npx expo start
-   ```
+## 🏗️ Project Structure
 
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+src/
+├── app/                      # Expo Router pages
+│   ├── _layout.tsx          # Root layout
+│   ├── index.tsx            # Home dashboard
+│   ├── hub.tsx              # Activity hub
+│   ├── nutrition.tsx        # Nutrition tracking
+│   ├── progress.tsx         # Progress tracking
+│   └── workouts.tsx         # Workout library
+├── components/
+│   ├── dashboard/           # Dashboard widgets
+│   │   ├── daily-targets-card.tsx
+│   │   ├── greeting.tsx
+│   │   ├── north-star-card.tsx
+│   │   ├── suggestion-card.tsx
+│   │   └── workout-card.tsx
+│   ├── fab/                 # Floating action button
+│   │   └── gym-fab.tsx
+│   ├── ui/                  # Base UI components
+│   │   ├── gym-card.tsx
+│   │   └── progress-bar.tsx
+│   └── ...
+├── constants/
+│   └── theme.ts             # Design tokens & colors
+├── hooks/                   # Custom React hooks
+└── global.css               # Global styles
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🎨 Design Tokens
 
-### Other setup steps
+### Colors
+- **Backgrounds**: Deep black-blue tones (#0A0A0C, #141418, #1C1C22)
+- **Text**: Clear hierarchy (Primary: #FFFFFF, Secondary: #9CA0AB, Tertiary: #6B7280)
+- **Semantic**: 
+  - Success: Emerald (#10B981)
+  - Warning: Amber (#F59E0B)
+  - Error: Red (#EF4444)
+  - Accent: Indigo (#6366F1)
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+### Typography Scale
+- Display: 36px (Hero statements)
+- H1: 30px (Major sections)
+- H2: 24px (Card titles)
+- H3: 20px (Subsections)
+- Body: 16px (Body text)
+- Caption: 12px (Labels)
 
-## Learn more
+### Spacing Scale
+Quarter (1), Half (2), ThreeQuarter (3), One (4) through Twenty (80)
 
-To learn more about developing your project with Expo, look at the following resources:
+## 🚀 Tech Stack
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- **Expo SDK 57** - Modern React Native development
+- **React 19.2.3** - Latest React features
+- **React Native 0.86.2** - Native mobile framework
+- **Expo Router 57** - File-based routing
+- **Lucide React Native** - Beautiful icon library
+- **Expo Haptics** - Tactile feedback
 
-## Join the community
+## 🛠️ Development
 
-Join our community of developers creating universal apps.
+```bash
+# Install dependencies
+npm install
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+# Start development server
+npx expo start
+
+# Run on specific platforms
+npx expo run:ios
+npx expo run:android
+npx expo run:web
+```
+
+## 📱 Platform Support
+
+- ✅ iOS (Native)
+- ✅ Android (Native)
+- ✅ Web (Optimized)
+
+## 🎯 Quality of Life Features
+
+1. **Water Goal Celebration** - Visual celebration when daily water goal is met
+2. **Quick Reset** - One-tap water tracker reset
+3. **Color-Coded Actions** - Intuitive color system for different tracking types
+4. **Haptic Feedback** - Tactile response for all interactions
+5. **Scrollable Dashboard** - Comfortable navigation on all screen sizes
+6. **Progress Animations** - Smooth progress bar transitions
+7. **Icon Badges** - Visual indicators for card types
+8. **Action Buttons** - Direct call-to-action on workout cards
+
+---
+
+Built with 💪 by the GymOS Team
