@@ -5,10 +5,12 @@
 
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { ColorSchemeName } from 'react-native';
 
 export function useTheme() {
-  const scheme = useColorScheme();
-  const theme = scheme === 'unspecified' ? 'light' : scheme;
+  const scheme: ColorSchemeName = useColorScheme();
+  // Safely handle the 'unspecified' case by defaulting to 'light'
+  const theme: 'light' | 'dark' = scheme === 'unspecified' || !scheme ? 'light' : scheme;
 
   return Colors[theme];
 }

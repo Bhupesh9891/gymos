@@ -57,7 +57,7 @@ export const Fonts = Platform.select({
     rounded: "ui-rounded",
     mono: "ui-monospace",
   },
-  default: {
+  android: {
     sans: "normal",
     serif: "serif",
     rounded: "normal",
@@ -69,7 +69,12 @@ export const Fonts = Platform.select({
     rounded: "var(--font-rounded)",
     mono: "var(--font-mono)",
   },
-});
+}) ?? {
+  sans: "normal",
+  serif: "serif",
+  rounded: "normal",
+  mono: "monospace",
+};
 
 export const Spacing = {
   half: 2,

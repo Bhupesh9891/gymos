@@ -6,7 +6,7 @@ import {
   TabTrigger,
   TabTriggerSlotProps,
 } from "expo-router/ui";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { GymColors, Spacing } from "@/constants/theme";
 
@@ -72,8 +72,6 @@ export function CustomTabList(props: TabListProps) {
     </View>
   );
 }
-
-import { Text } from "react-native";
 
 const styles = StyleSheet.create({
   tabListContainer: {

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Pressable } from "react-native";
 
 import { GymCard } from "@/components/ui/gym-card";
 import { ProgressBar } from "@/components/ui/progress-bar";
@@ -8,18 +8,33 @@ type DailyTargetsCardProps = {
   water: number;
   sleep: string;
   steps: string;
+  onWaterReset?: () => void;
 };
 
 export function DailyTargetsCard({
   water,
   sleep,
   steps,
+  onWaterReset,
 }: DailyTargetsCardProps) {
+  const waterPercent = Math.min((water / 3.5) * 100, 100);
+  const isWaterGoalMet = water >= 3.5;
+
   return (
     <GymCard style={styles.card}>
-      <Text style={styles.eyebrow}>DAILY TARGETS</Text>
+      <View style={styles.header}>
+        <Text style={styles.eyebrow}>DAILY TARGETS</Text>
+        {onWaterReset && water > 0 && (
+          <Pressable onPress={onWaterReset} style={styles.resetButton}>
+            <Text style={styles.resetButtonText}>Reset Water</Text>
+          </Pressable>
+        )}
+      </View>
 
       <ProgressBar current={water} target={3.5} unit="L" />
+      {isWaterGoalMet && (
+        <Text style={styles.goalMetText}>🎉 Water goal met!</Text>
+      )}
       <TargetRow label="Sleep" value={sleep} />
       <TargetRow label="Steps" value={steps} />
     </GymCard>
@@ -45,9 +60,33 @@ const styles = StyleSheet.create({
     marginBottom: Spacing.two,
   },
 
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: Spacing.one,
+  },
+
   eyebrow: {
     color: GymColors.text.tertiary,
     fontSize: Typography.caption,
+  },
+
+  resetButton: {
+    paddingVertical: Spacing.half,
+    paddingHorizontal: Spacing.one,
+  },
+
+  resetButtonText: {
+    color: GymColors.text.tertiary,
+    fontSize: Typography.caption,
+  },
+
+  goalMetText: {
+    color: GymColors.semantic.success,
+    fontSize: Typography.caption,
+    fontWeight: '600',
+    marginTop: Spacing.half,
     marginBottom: Spacing.one,
   },
 

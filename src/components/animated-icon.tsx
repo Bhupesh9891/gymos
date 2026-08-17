@@ -59,7 +59,9 @@ export function AnimatedSplashOverlay() {
   );
 }
 
-const keyframe = new Keyframe({
+// Note: These keyframes are defined for potential future use
+// Currently only splashKeyframe is used in AnimatedSplashOverlay
+const _keyframe = new Keyframe({
   0: {
     transform: [{ scale: INITIAL_SCALE_FACTOR }],
   },
@@ -69,7 +71,7 @@ const keyframe = new Keyframe({
   },
 });
 
-const logoKeyframe = new Keyframe({
+const _logoKeyframe = new Keyframe({
   0: {
     transform: [{ scale: 1.3 }],
     opacity: 0,
@@ -86,7 +88,7 @@ const logoKeyframe = new Keyframe({
   },
 });
 
-const glowKeyframe = new Keyframe({
+const _glowKeyframe = new Keyframe({
   0: {
     transform: [{ rotateZ: '0deg' }],
   },
@@ -95,20 +97,24 @@ const glowKeyframe = new Keyframe({
   },
 });
 
+// Note: AnimatedIcon is available for use but currently not used in the app
+// Uncomment below to use it, or remove if not needed
+/*
 export function AnimatedIcon() {
   return (
     <View style={styles.iconContainer}>
-      <Animated.View entering={glowKeyframe.duration(60 * 1000 * 4)} style={styles.glow}>
+      <Animated.View entering={_glowKeyframe.duration(60 * 1000 * 4)} style={styles.glow}>
         <Image style={styles.glow} source={require('@/assets/images/logo-glow.png')} />
       </Animated.View>
 
-      <Animated.View entering={keyframe.duration(DURATION)} style={styles.background} />
-      <Animated.View style={styles.imageContainer} entering={logoKeyframe.duration(DURATION)}>
+      <Animated.View entering={_keyframe.duration(DURATION)} style={styles.background} />
+      <Animated.View style={styles.imageContainer} entering={_logoKeyframe.duration(DURATION)}>
         <Image style={styles.image} source={require('@/assets/images/expo-logo.png')} />
       </Animated.View>
     </View>
   );
 }
+*/
 
 const styles = StyleSheet.create({
   imageContainer: {

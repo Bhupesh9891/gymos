@@ -23,6 +23,11 @@ export default function HomeScreen() {
     },
     why: "Build the physique I want.",
   };
+
+  const handleResetWater = () => {
+    setWater(0);
+  };
+
   return (
     <View style={styles.container}>
       <Greeting text="Good evening" />
@@ -31,7 +36,12 @@ export default function HomeScreen() {
 
       <NorthStarCard northStar={northStar} />
 
-      <DailyTargetsCard water={water} sleep="7h 12m" steps="6,430" />
+      <DailyTargetsCard 
+        water={water} 
+        sleep="7h 12m" 
+        steps="6,430"
+        onWaterReset={handleResetWater}
+      />
 
       <SuggestionCard message="Today's workout is Push." />
       <GymFAB

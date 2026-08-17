@@ -61,6 +61,7 @@ export function GymFAB({ onWaterAdd }: GymFABProps) {
   async function handleWaterAdd(amount: number) {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
+    // Convert mL to L for consistency with the rest of the app
     onWaterAdd?.(amount / 1000);
     setWaterSheetOpen(false);
   }
@@ -155,7 +156,7 @@ export function GymFAB({ onWaterAdd }: GymFABProps) {
                   onPress={() => handleWaterAdd(amount)}
                 >
                   <Text style={styles.waterText}>
-                    {amount >= 1000 ? "1 L" : `${amount} mL`}
+                    {amount >= 1000 ? `${amount / 1000} L` : `${amount} mL`}
                   </Text>
                 </Pressable>
               ))}
