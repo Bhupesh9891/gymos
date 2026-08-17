@@ -1,110 +1,122 @@
-# GymOS - Fitness Tracking Dashboard 💪
+# GymOS - Professional Fitness Tracking App
 
-A modern, cross-platform fitness tracking application built with Expo and React Native.
+A modern, beautifully designed fitness tracking application built with Expo and React Native. Features a premium dark theme with vibrant accents, smooth animations, and an intuitive user interface.
 
-## Get started
+## ✨ Features
 
-1. Install dependencies
+### Dashboard
+- **Personalized Greeting** - Dynamic greeting with user identification
+- **Workout Card** - Today's workout display with quick start action
+- **North Star Goal** - Long-term goal tracking with editable metrics
+- **Daily Targets** - Water, sleep, and step tracking with progress visualization
+- **Smart Suggestions** - Context-aware fitness recommendations
 
-   ```bash
-   npm install
-   ```
+### Quick Actions FAB
+- Color-coded action buttons for different tracking categories
+- Haptic feedback for tactile response
+- Water quick-add with multiple volume options
+- Smooth modal animations
 
-2. Start the app
+### Design System
+- Professional dark mode palette
+- Vibrant semantic colors for different action types
+- Consistent spacing and typography scale
+- Subtle shadows and borders for depth
+- Icon-based visual hierarchy
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Project Structure
+## 🏗️ Project Structure
 
 ```
 src/
-├── app/                  # App router pages and layouts
-├── components/           # Reusable UI components
-│   ├── dashboard/        # Dashboard-specific components
-│   │   ├── daily-targets-card.tsx    # Water, sleep, steps tracking
-│   │   ├── greeting.tsx              # Time-based greeting
-│   │   ├── north-star-card.tsx       # Primary goal tracking
-│   │   ├── suggestion-card.tsx       # Daily suggestions
-│   │   └── workout-card.tsx          # Current workout display
-│   ├── fab/              # Floating action button components
-│   ├── ui/               # Base UI components (cards, progress bars)
-│   └── optimized/        # Performance-optimized web components
-├── constants/            # Design tokens and theme configuration
-├── hooks/                # Custom React hooks with type safety
-└── global.css            # Global styles and CSS animations
+├── app/                      # Expo Router pages
+│   ├── _layout.tsx          # Root layout
+│   ├── index.tsx            # Home dashboard
+│   ├── hub.tsx              # Activity hub
+│   ├── nutrition.tsx        # Nutrition tracking
+│   ├── progress.tsx         # Progress tracking
+│   └── workouts.tsx         # Workout library
+├── components/
+│   ├── dashboard/           # Dashboard widgets
+│   │   ├── daily-targets-card.tsx
+│   │   ├── greeting.tsx
+│   │   ├── north-star-card.tsx
+│   │   ├── suggestion-card.tsx
+│   │   └── workout-card.tsx
+│   ├── fab/                 # Floating action button
+│   │   └── gym-fab.tsx
+│   ├── ui/                  # Base UI components
+│   │   ├── gym-card.tsx
+│   │   └── progress-bar.tsx
+│   └── ...
+├── constants/
+│   └── theme.ts             # Design tokens & colors
+├── hooks/                   # Custom React hooks
+└── global.css               # Global styles
 ```
 
-## Optimizations & Performance Improvements ✨
+## 🎨 Design Tokens
 
-### Web Loading Speed Optimizations
-- **Removed Heavy Image Assets**: Replaced PNG images with CSS gradients and shapes
-- **CSS-Only Animations**: Added keyframe animations in CSS to reduce JavaScript bundle
-- **Tree-Shaking**: Fixed `Platform.select()` structure for better dead code elimination
-- **Reduced Bundle Size**: Removed unused keyframes and animation code (~40% reduction in animation code)
-- **Type Safety**: Improved TypeScript types to prevent runtime errors and enable better optimization
+### Colors
+- **Backgrounds**: Deep black-blue tones (#0A0A0C, #141418, #1C1C22)
+- **Text**: Clear hierarchy (Primary: #FFFFFF, Secondary: #9CA0AB, Tertiary: #6B7280)
+- **Semantic**: 
+  - Success: Emerald (#10B981)
+  - Warning: Amber (#F59E0B)
+  - Error: Red (#EF4444)
+  - Accent: Indigo (#6366F1)
 
-### Code Quality Improvements
-- **Fixed Type Narrowing**: Proper `ColorSchemeName` handling throughout the app
-- **Eliminated Dead Code**: Removed unused variables and commented-out code blocks
-- **Consistent Patterns**: Standardized component structure and state management
-- **Better Error Handling**: Added proper null coalescing and fallback values
+### Typography Scale
+- Display: 36px (Hero statements)
+- H1: 30px (Major sections)
+- H2: 24px (Card titles)
+- H3: 20px (Subsections)
+- Body: 16px (Body text)
+- Caption: 12px (Labels)
 
-### User Experience Enhancements
-- 💧 **Water Goal Celebration** - Visual feedback when reaching 3.5L daily target
-- 🔄 **Quick Reset** - One-tap water intake reset in Daily Targets card
-- 📝 **Persistent Editing** - North Star editor maintains state across sessions
-- ⚡ **Faster Animations** - Optimized animation durations and removed unnecessary effects
+### Spacing Scale
+Quarter (1), Half (2), ThreeQuarter (3), One (4) through Twenty (80)
 
-## Features
+## 🚀 Tech Stack
 
-- 🎨 **Theming Support** - Dark mode with system preference detection
-- 📱 **Cross-Platform** - iOS, Android, and Web support with platform-specific optimizations
-- ✨ **Smooth Animations** - Hybrid approach using Reanimated for native, CSS for web
-- 🧩 **Component Library** - Reusable UI components with Lucide icons
-- 📊 **Dashboard** - Real-time tracking of water, sleep, steps, and workouts
-- 🎯 **Goal Tracking** - North Star feature for long-term objective setting
-- ⚡ **Quick Actions** - FAB for fast logging of workouts, meals, water, and more
+- **Expo SDK 57** - Modern React Native development
+- **React 19.2.3** - Latest React features
+- **React Native 0.86.2** - Native mobile framework
+- **Expo Router 57** - File-based routing
+- **Lucide React Native** - Beautiful icon library
+- **Expo Haptics** - Tactile feedback
 
-## Tech Stack
+## 🛠️ Development
 
-- **Framework**: Expo SDK 57
-- **React**: 19.2.3
-- **React Native**: 0.86.2
-- **Navigation**: Expo Router 57
-- **Styling**: NativeWind/Tailwind CSS + CSS Modules
-- **Icons**: Lucide React Native
-- **Animations**: React Native Reanimated 4.5.1 + CSS Keyframes
-- **TypeScript**: Full type safety with strict mode
+```bash
+# Install dependencies
+npm install
 
-## Performance Best Practices
+# Start development server
+npx expo start
 
-1. **Lazy Loading**: Components are loaded on-demand
-2. **Memoization**: Expensive calculations are cached
-3. **CSS Animations**: Web uses GPU-accelerated CSS instead of JS animations
-4. **Asset Optimization**: No external image dependencies, all CSS-based graphics
-5. **Code Splitting**: Platform-specific code is automatically split by bundler
+# Run on specific platforms
+npx expo run:ios
+npx expo run:android
+npx expo run:web
+```
 
-## Learn more
+## 📱 Platform Support
 
-To learn more about developing your project with Expo, look at the following resources:
+- ✅ iOS (Native)
+- ✅ Android (Native)
+- ✅ Web (Optimized)
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+## 🎯 Quality of Life Features
 
-## Join the community
+1. **Water Goal Celebration** - Visual celebration when daily water goal is met
+2. **Quick Reset** - One-tap water tracker reset
+3. **Color-Coded Actions** - Intuitive color system for different tracking types
+4. **Haptic Feedback** - Tactile response for all interactions
+5. **Scrollable Dashboard** - Comfortable navigation on all screen sizes
+6. **Progress Animations** - Smooth progress bar transitions
+7. **Icon Badges** - Visual indicators for card types
+8. **Action Buttons** - Direct call-to-action on workout cards
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Built with 💪 by the GymOS Team

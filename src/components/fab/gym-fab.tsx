@@ -13,20 +13,20 @@ import {
 import { useState } from "react";
 import { Modal, Pressable, StyleSheet, Text, View } from "react-native";
 
-import { GymColors, Radius, Spacing, Typography } from "@/constants/theme";
+import { GymColors, Radius, Spacing, Typography, FontWeight, Shadows } from "@/constants/theme";
 
 type GymFABProps = {
   onWaterAdd?: (amount: number) => void;
 };
 
 const actions = [
-  { label: "Workout", icon: Dumbbell },
-  { label: "Meal", icon: Utensils },
-  { label: "Water", icon: Droplets },
-  { label: "Sleep", icon: Moon },
-  { label: "Weight", icon: Scale },
-  { label: "Journal", icon: BookOpen },
-  { label: "Progress photo", icon: Camera },
+  { label: "Workout", icon: Dumbbell, color: GymColors.semantic.accent },
+  { label: "Meal", icon: Utensils, color: GymColors.semantic.warning },
+  { label: "Water", icon: Droplets, color: "#3B82F6" },
+  { label: "Sleep", icon: Moon, color: "#8B5CF6" },
+  { label: "Weight", icon: Scale, color: GymColors.semantic.error },
+  { label: "Journal", icon: BookOpen, color: GymColors.semantic.success },
+  { label: "Photo", icon: Camera, color: "#EC4899" },
 ];
 
 export function GymFAB({ onWaterAdd }: GymFABProps) {
@@ -35,19 +35,16 @@ export function GymFAB({ onWaterAdd }: GymFABProps) {
 
   async function openSheet() {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-
     setOpen(true);
   }
 
   async function closeSheet() {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-
     setOpen(false);
   }
 
   async function handleAction(label: string) {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-
     setOpen(false);
 
     if (label === "Water") {
@@ -60,8 +57,6 @@ export function GymFAB({ onWaterAdd }: GymFABProps) {
 
   async function handleWaterAdd(amount: number) {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-
-    // Convert mL to L for consistency with the rest of the app
     onWaterAdd?.(amount / 1000);
     setWaterSheetOpen(false);
   }
@@ -73,9 +68,9 @@ export function GymFAB({ onWaterAdd }: GymFABProps) {
         accessibilityRole="button"
         accessibilityLabel="Open quick add"
         onPress={openSheet}
-        style={styles.fab}
+        style={[styles.fab, Shadows.large]}
       >
-        <Plus size={28} color={GymColors.text.primary} />
+        <Plus size={28} color="#FFFFFF" strokeWidth={2.5} />
       </Pressable>
 
       {/* Main Quick Add Sheet */}
@@ -103,14 +98,14 @@ export function GymFAB({ onWaterAdd }: GymFABProps) {
             </View>
 
             <View style={styles.grid}>
-              {actions.map(({ label, icon: Icon }) => (
+              {actions.map(({ label, icon: Icon, color }) => (
                 <Pressable
                   key={label}
                   onPress={() => handleAction(label)}
                   style={styles.action}
                 >
-                  <View style={styles.iconContainer}>
-                    <Icon size={24} color={GymColors.text.primary} />
+                  <View style={[styles.iconContainer, { backgroundColor: color + '15' }]}>
+                    <Icon size={24} color={color} strokeWidth={2} />
                   </View>
 
                   <Text style={styles.actionLabel}>{label}</Text>
@@ -136,7 +131,7 @@ export function GymFAB({ onWaterAdd }: GymFABProps) {
 
           <View style={styles.sheet}>
             <View style={styles.sheetHeader}>
-              <Text style={styles.title}>Quick add water</Text>
+              <Text style={styles.title}>Add water</Text>
 
               <Pressable
                 accessibilityRole="button"
@@ -171,11 +166,11 @@ export function GymFAB({ onWaterAdd }: GymFABProps) {
 const styles = StyleSheet.create({
   fab: {
     position: "absolute",
-    right: Spacing.four,
-    bottom: Spacing.four,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
+    right: Spacing.five,
+    bottom: Spacing.five,
+    width: 60,
+    height: 60,
+    borderRadius: 30,
     backgroundColor: GymColors.semantic.accent,
     alignItems: "center",
     justifyContent: "center",
@@ -188,29 +183,29 @@ const styles = StyleSheet.create({
 
   backdrop: {
     ...StyleSheet.absoluteFill,
-    backgroundColor: "rgba(0, 0, 0, 0.55)",
+    backgroundColor: GymColors.background.overlay,
   },
 
   sheet: {
     backgroundColor: GymColors.background.surface,
     borderTopLeftRadius: Radius.extraLarge,
     borderTopRightRadius: Radius.extraLarge,
-    paddingHorizontal: Spacing.four,
-    paddingTop: Spacing.three,
-    paddingBottom: Spacing.five,
+    paddingHorizontal: Spacing.five,
+    paddingTop: Spacing.six,
+    paddingBottom: Spacing.eight,
   },
 
   sheetHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    marginBottom: Spacing.four,
+    marginBottom: Spacing.six,
   },
 
   title: {
     color: GymColors.text.primary,
     fontSize: Typography.h2,
-    fontWeight: "600",
+    fontWeight: FontWeight.bold,
   },
 
   closeButton: {
@@ -219,25 +214,25 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     alignItems: "center",
     justifyContent: "center",
+    backgroundColor: GymColors.background.card,
   },
 
   grid: {
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: Spacing.three,
+    gap: Spacing.four,
   },
 
   action: {
-    width: "28%",
+    width: "30%",
     alignItems: "center",
-    gap: Spacing.one,
+    gap: Spacing.two,
   },
 
   iconContainer: {
-    width: 52,
-    height: 52,
+    width: 56,
+    height: 56,
     borderRadius: Radius.large,
-    backgroundColor: GymColors.background.card,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -245,23 +240,26 @@ const styles = StyleSheet.create({
   actionLabel: {
     color: GymColors.text.secondary,
     fontSize: Typography.caption,
+    fontWeight: FontWeight.medium,
     textAlign: "center",
   },
 
   waterOptions: {
-    gap: Spacing.two,
+    gap: Spacing.twoAndHalf,
   },
 
   waterButton: {
     backgroundColor: GymColors.background.card,
     borderRadius: Radius.medium,
-    paddingVertical: Spacing.three,
+    paddingVertical: Spacing.four,
     alignItems: "center",
+    borderWidth: 1,
+    borderColor: GymColors.background.surface,
   },
 
   waterText: {
     color: GymColors.text.primary,
     fontSize: Typography.body,
-    fontWeight: "600",
+    fontWeight: FontWeight.semibold,
   },
 });

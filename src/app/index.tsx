@@ -9,7 +9,7 @@ import { WorkoutCard } from "@/components/dashboard/workout-card";
 import { GymFAB } from "@/components/fab/gym-fab";
 import { GymColors, Spacing } from "@/constants/theme";
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   const [water, setWater] = useState(2.1);
@@ -29,7 +29,11 @@ export default function HomeScreen() {
   };
 
   return (
-    <View style={styles.container}>
+    <ScrollView 
+      style={styles.container}
+      contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
+    >
       <Greeting text="Good evening" />
 
       <WorkoutCard workoutName="Push" message="Pick up where you left off." />
@@ -44,12 +48,15 @@ export default function HomeScreen() {
       />
 
       <SuggestionCard message="Today's workout is Push." />
+      
+      <View style={styles.bottomPadding} />
+      
       <GymFAB
         onWaterAdd={(amount) => {
           setWater((current) => current + amount);
         }}
       />
-    </View>
+    </ScrollView>
   );
 }
 
@@ -57,7 +64,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: GymColors.background.primary,
+  },
+  content: {
     paddingHorizontal: Spacing.four,
-    paddingTop: Spacing.five,
+    paddingTop: Spacing.six,
+    paddingBottom: Spacing.twenty,
+  },
+  bottomPadding: {
+    height: Spacing.twelve,
   },
 });

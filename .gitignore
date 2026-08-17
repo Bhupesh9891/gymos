@@ -5,12 +5,17 @@ node_modules/
 # Build outputs
 dist/
 build/
-*.js
-*.ts
-*.tsx
-*.css
+target/
 
-# Environment variables
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
 .env
 .env.local
 *.env.*
@@ -20,7 +25,6 @@ build/
 .idea/
 *.swp
 *.swo
-*.tmp
 
 # Logs
 *.log
@@ -30,46 +34,16 @@ coverage/
 htmlcov/
 .coverage
 
-# Python specific
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.Python
-*.so
-*.egg-info/
-.eggs/
-.pytest_cache/
-.mypy_cache/
-.tox/
-
-# Node.js specific
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-node_modules/
-.cache/
-.nyc_output/
-coverage/
-build/
-dist/
-*.min.js
-*.min.css
-
-# Compiled and binary files
-*.o
-*.obj
-*.exe
-*.dll
-*.so
-*.a
-*.out
-
-# OS generated files
+# OS files
 .DS_Store
 Thumbs.db
-ehthumbs.db
-Icon?
-.directory
-.hgcheckout
+
+# Temporary files
+*.tmp
+
+# MyPy cache
+.mypy_cache/
+
+# Pytest cache
+.pytest_cache/
 ```
