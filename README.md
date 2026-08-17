@@ -41,6 +41,57 @@ This command will move the starter code to the **app-example** directory and cre
 - If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
 - Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
 
+## Project Structure
+
+```
+src/
+├── app/                  # App router pages and layouts
+├── components/           # Reusable UI components
+│   ├── dashboard/        # Dashboard-specific components
+│   ├── fab/              # Floating action button components
+│   └── ui/               # Base UI components
+├── constants/            # App constants and configuration
+├── hooks/                # Custom React hooks
+└── global.css            # Global styles
+```
+
+## Known Issues
+
+⚠️ **The following issues need to be addressed:**
+
+### Critical Errors
+1. **Missing Asset Files** - `animated-icon.tsx` and `animated-icon.web.tsx` reference non-existent image files at `@/assets/images/expo-logo.png` and `@/assets/images/logo-glow.png`
+2. **Missing CSS Module File** - `animated-icon.web.tsx` imports `animated-icon.module.css` which exists but may have missing keyframe definitions
+3. **Missing Import** - `app-tabs.web.tsx` uses `<Text>` component without importing it
+
+### Type Safety Issues
+4. **Unsafe Type Assertion** - `use-theme.ts` has manual handling of `'unspecified'` theme conversion instead of proper type narrowing
+5. **Unused Keyframes** - Multiple defined keyframes in `animated-icon.tsx` are never used
+
+### Logic/Design Issues
+6. **Water Input Unit Confusion** - Inconsistent handling between milliliters and liters across components
+7. **Animation Duration Typo** - `animated-icon.web.tsx` has `DURATION / 1000` creating conflicting keyframe values
+8. **Incomplete Component Implementation** - `north-star-card.tsx` editor doesn't persist changes when saved
+9. **Platform-Specific Code Issue** - `theme.ts` has incorrect `Platform.select()` structure for Fonts object
+
+## Features
+
+- 🎨 **Theming Support** - Dark/light mode with system preference detection
+- 📱 **Cross-Platform** - iOS, Android, and Web support
+- ✨ **Animations** - Smooth animations using React Native Reanimated
+- 🧩 **Component Library** - Reusable UI components with Lucide icons
+- 📊 **Dashboard** - Daily targets, workout tracking, and suggestions
+
+## Tech Stack
+
+- **Framework**: Expo SDK 57
+- **React**: 19.2.3
+- **React Native**: 0.86.2
+- **Navigation**: Expo Router 57
+- **Styling**: NativeWind/Tailwind CSS
+- **Icons**: Lucide React Native
+- **Animations**: React Native Reanimated 4.5.1
+
 ## Learn more
 
 To learn more about developing your project with Expo, look at the following resources:
