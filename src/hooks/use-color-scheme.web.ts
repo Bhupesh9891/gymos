@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react';
-import { useColorScheme as useRNColorScheme } from 'react-native';
+import { useColorScheme as useRNColorScheme, ColorSchemeName } from 'react-native';
 
 /**
  * To support static rendering, this value needs to be re-calculated on the client side for web
+ * Optimized: Returns properly typed value to avoid unnecessary type narrowing downstream
  */
-export function useColorScheme() {
+export function useColorScheme(): NonNullable<ColorSchemeName> {
   const [hasHydrated, setHasHydrated] = useState(false);
 
   useEffect(() => {
@@ -14,7 +15,7 @@ export function useColorScheme() {
   const colorScheme = useRNColorScheme();
 
   if (hasHydrated) {
-    return colorScheme;
+    return colorScheme ?? 'light';
   }
 
   return 'light';

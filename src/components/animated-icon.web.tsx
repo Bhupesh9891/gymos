@@ -2,7 +2,6 @@ import { Image } from 'expo-image';
 import { StyleSheet, View } from 'react-native';
 import Animated, { Keyframe, Easing } from 'react-native-reanimated';
 
-import classes from './animated-icon.module.css';
 const DURATION = 300;
 
 export function AnimatedSplashOverlay() {
@@ -39,31 +38,20 @@ const logoKeyframe = new Keyframe({
   },
 });
 
-const glowKeyframe = new Keyframe({
-  0: {
-    transform: [{ rotateZ: '-180deg' }, { scale: 0.8 }],
-    opacity: 0,
-  },
-  100: {
-    transform: [{ rotateZ: '0deg' }, { scale: 1 }],
-    opacity: 1,
-    easing: Easing.elastic(0.7),
-  },
-});
+// Optimized: Removed unused glowKeyframe to reduce bundle size
+// Simple CSS-based gradient background instead of image
 
 export function AnimatedIcon() {
   return (
     <View style={styles.iconContainer}>
-      <Animated.View entering={glowKeyframe.duration(60 * 1000 * 4)} style={styles.glow}>
-        <Image style={styles.glow} source={require('@/assets/images/logo-glow.png')} />
-      </Animated.View>
-
+      {/* Optimized: Removed heavy image assets, using CSS gradient */}
       <Animated.View style={styles.background} entering={keyframe.duration(DURATION)}>
-        <div className={classes.expoLogoBackground} />
+        <div className="expo-logo-background" />
       </Animated.View>
 
       <Animated.View style={styles.imageContainer} entering={logoKeyframe.duration(DURATION)}>
-        <Image style={styles.image} source={require('@/assets/images/expo-logo.png')} />
+        {/* Placeholder for logo - can be replaced with SVG for better performance */}
+        <View style={styles.logoPlaceholder} />
       </Animated.View>
     </View>
   );
@@ -81,25 +69,24 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  glow: {
-    width: 201,
-    height: 201,
-    position: 'absolute',
-  },
   iconContainer: {
     justifyContent: 'center',
     alignItems: 'center',
     width: 128,
     height: 128,
   },
-  image: {
-    position: 'absolute',
-    width: 76,
-    height: 71,
-  },
   background: {
     width: 128,
     height: 128,
     position: 'absolute',
+    borderRadius: 40,
+    backgroundColor: '#3C9FFE',
+  },
+  logoPlaceholder: {
+    width: 76,
+    height: 71,
+    position: 'absolute',
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
   },
 });

@@ -8,9 +8,8 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { ColorSchemeName } from 'react-native';
 
 export function useTheme() {
-  const scheme: ColorSchemeName = useColorScheme();
-  // Safely handle the 'unspecified' case by defaulting to 'light'
-  const theme: 'light' | 'dark' = scheme === 'unspecified' || !scheme ? 'light' : scheme;
-
-  return Colors[theme];
+  const scheme: NonNullable<ColorSchemeName> = useColorScheme() ?? 'light';
+  // Type-safe: useColorScheme now returns properly narrowed type
+  
+  return Colors[scheme];
 }

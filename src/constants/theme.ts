@@ -1,5 +1,3 @@
-import "@/global.css";
-
 import { Platform } from "react-native";
 
 /**
@@ -50,30 +48,31 @@ export const GymColors = {
   },
 } as const;
 
-export const Fonts = Platform.select({
-  ios: {
-    sans: "system-ui",
-    serif: "ui-serif",
-    rounded: "ui-rounded",
-    mono: "ui-monospace",
-  },
-  android: {
-    sans: "normal",
-    serif: "serif",
-    rounded: "normal",
-    mono: "monospace",
-  },
-  web: {
-    sans: "var(--font-display)",
-    serif: "var(--font-serif)",
-    rounded: "var(--font-rounded)",
-    mono: "var(--font-mono)",
-  },
-}) ?? {
-  sans: "normal",
-  serif: "serif",
-  rounded: "normal",
-  mono: "monospace",
+// Optimized: Fixed Platform.select() structure for better tree-shaking
+export const Fonts = {
+  sans: Platform.select({
+    ios: "system-ui",
+    android: "normal",
+    web: "var(--font-display)",
+  }) ?? "normal",
+  
+  serif: Platform.select({
+    ios: "ui-serif",
+    android: "serif",
+    web: "var(--font-serif)",
+  }) ?? "serif",
+  
+  rounded: Platform.select({
+    ios: "ui-rounded",
+    android: "normal",
+    web: "var(--font-rounded)",
+  }) ?? "normal",
+  
+  mono: Platform.select({
+    ios: "ui-monospace",
+    android: "monospace",
+    web: "var(--font-mono)",
+  }) ?? "monospace",
 };
 
 export const Spacing = {
